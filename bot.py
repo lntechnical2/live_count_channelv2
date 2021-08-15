@@ -32,29 +32,29 @@ async def help(client,message):
 
 @app.on_message( filters.user(ADMIN) & filters.command(["play"]))
 async def start(client,message):
-  input_filename = f'radio-{message.chat.id}.raw'
-  group_call = GROUP_CALLS.get(message.chat.id)
-  if group_call is None:
-        group_call = GroupCall(client, input_filename, path_to_log_file='')
-        GROUP_CALLS[message.chat.id] = group_call
- process = FFMPEG_PROCESSES.get(message.chat.id)
- if process:
-  process.send_signal(signal.SIGTERM)
- try:
-   ydl_opts = {}
-   url = message.text.split('/play')[1]
-   with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-    meta = ydl.extract_info(url, download=False)
-    formats= meta.get('formats', [meta])[:1]
-    for f in formats:
-     url = f['url']
- except:
-  return
- station_stream_url = url 
-await group_call.start(message.chat.id)
- process = ffmpeg.input(station_stream_url).output( input_filename, format='s16le', acodec='pcm_s16le', ac=2, ar='48k'  ).overwrite_output().run_async()
- FFMPEG_PROCESSES[message.chat.id] = process
- await message.reply_text('Radio is playing...')
+       input_filename = f'radio-{message.chat.id}.raw'
+       group_call = GROUP_CALLS.get(message.chat.id)
+       if group_call is None:
+           group_call = GroupCall(client, input_filename, path_to_log_file='')
+           GROUP_CALLS[message.chat.id] = group_call
+       process = FFMPEG_PROCESSES.get(message.chat.id)
+       if process:
+       	process.send_signal(signal.SIGTERM)
+       try:
+       	ydl_opts = {}
+       	url = message.text.split('/play')[1]
+       	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+       		meta = ydl.extract_info(url, download=False)
+       		formats= meta.get('formats', [meta])[:1]
+       		for f in formats:
+       			url = f['url']
+       except:
+       	return
+       station_stream_url = url 
+       await group_call.start(message.chat.id)
+       process = ffmpeg.input(station_stream_url).output( input_filename, format='s16le', acodec='pcm_s16le', ac=2, ar='48k'  ).overwrite_output().run_async()
+       FFMPEG_PROCESSES[message.chat.id] = process
+       await message.reply_text('Radio is playing...')
 
 @app.on_message( filters.user(ADMIN) & filters.command(["stop"]))
 async def stop(client,message):
