@@ -1,3 +1,4 @@
+import os
 import signal
 import ffmpeg  
 from pyrogram import Client, filters
@@ -6,9 +7,9 @@ import youtube_dl
 ADMIN = 923943045
 API_ID = "5506621"
 API_HASH = "5a8fd4a251594493d8ff2e1960f99ce2"
-SESSION_NAME = "BQBS3pLb688arsVZ_ROjeMdyu2wsQsnfq0q6UcU3ag0bq47xl9aWXOqKaA8La9m07Gg68sN3dtPFePxxgLaWaT6IUpVo7gQsDr_q4laqIzSu0tBZFoPjguNtNBXj57oPxK9BG44UYwDuf8q4KQRKQedSy5GUlkb0hSaElH9pZjSe2-_ocb0yMzuMdqX7nmplTO9UQ-JkZ7_aq_aga5PxomCorrN3qkxgMdYJUYP_UIjEffba0ZhhRgFTMVO5jYx7fEPXHQPpjRls7zMkP3uajKGedGqPmmE8RHxEdPljPUpZL2xNqYlaoj3gBet15cJIoP2sJ6GI8wtQf39FkOFArKcMNUAQA"
-
-
+SESSION_NAME = "BQAXcmBjLhuqsl24XhSOeb03P4Nv6P6QBntr4S53L4151oaMqYYdX66BDdMeRabwY46EXjwT-hMF6pUMa_UYTp-h4KNQhjTaoPCiubXtgFwpdUOFn7RygXHS9UxsjGIzRsvRaL2nXxLKeoVFjxJgK29qhPLoVox0NavPoklp8QEVp5gX295AcyDDcXRL95l-oKKd1-eJCwgPwH41Kw9UIGSKBdBTfNXu08hncH1kvuarZGuvbtDQ2jLEMUdcusJaBXv1NcZH_iKQN-HB6MROGFUlxvv5YSM_e_cXnBd1hMO_jdQ4C-ywO_0TR40XJLfz6SLWLxVH8MqAGI1YizLLBuQPNxJAhQA"
+ID = -1001401107958
+YT_LINK ="https://youtu.be/3ZswT0i7KsI"
 app = Client(SESSION_NAME, API_ID, API_HASH)
 
 HELP =""" Radio stations:
@@ -25,43 +26,42 @@ To stop use /stop command"""
 GROUP_CALLS = {}
 FFMPEG_PROCESSES = {}
 
-@app.on_message( filters.user(ADMIN) & filters.command('help',prefixes='!'))
+@app.on_message( filters.user(ADMIN) & filters.command('help',prefixes='.'))
 async def help(client,message):
  await message.reply_text(HELP)
 
 
-@app.on_message( filters.user(ADMIN) & filters.command(["play"]))
+@app.on_message( filters.user(ADMIN) & filters.command("play",prefixes='.'))
 async def start(client,message):
-       input_filename = f'radio-{message.chat.id}.raw'
-       group_call = GROUP_CALLS.get(message.chat.id)
+       input_filename = f'radio-{ID}.raw'
+       group_call = GROUP_CALLS.get(ID)
        if group_call is None:
            group_call = GroupCall(client, input_filename, path_to_log_file='')
-           GROUP_CALLS[message.chat.id] = group_call
-       process = FFMPEG_PROCESSES.get(message.chat.id)
+           GROUP_CALLS[ID] = group_call
+       process = FFMPEG_PROCESSES.get(ID)
        if process:
-       	process.send_signal(signal.SIGTERM)
+        process.send_signal(signal.SIGTERM)
        try:
-       	ydl_opts = {}
-       	url = message.text.split('/play')[1].replace(" ", "")
-       	with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-       		meta = ydl.extract_info(url, download=False)
-       		formats= meta.get('formats', [meta])[:1]
-       		for f in formats:
-       			url = f['url']
-       except:
-       	return
-       station_stream_url = url 
-       await group_call.start(message.chat.id)
-       process = ffmpeg.input(station_stream_url).output( input_filename, format='s16le', acodec='pcm_s16le', ac=2, ar='48k'  ).overwrite_output().run_async()
-       FFMPEG_PROCESSES[message.chat.id] = process
-       await message.reply_text('Radio is playing...')
+        ydl_opts = {}
+        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+    meta = ydl.extract_info(YT_LINK, download=False)
+    formats= meta.get('formats', [meta])[:1]
+    for f in formats:
+     url = f['url']
+   except:
+    return
+   station_stream_url = url
+   await group_call.start(ID)
+   process = ffmpeg.input(station_stream_url).output( input_filename, format='s16le', acodec='pcm_s16le', ac=2, ar='48k'  ).overwrite_output().run_async()
+   FFMPEG_PROCESSES[ID] = process
+   print('........ playing..........')
 
-@app.on_message( filters.user(ADMIN) & filters.command(["stop"]))
+@app.on_message( filters.user(ADMIN) & filters.command("stop",prefixes='.'))
 async def stop(client,message):
-    group_call = GROUP_CALLS.get(message.chat.id)
+    group_call = GROUP_CALLS.get(ID)
     if group_call:
      await group_call.stop()
-    process = FFMPEG_PROCESSES.get(message.chat.id)
+    process = FFMPEG_PROCESSES.get(ID)
     if process:
      process.send_signal(signal.SIGTERM)
    
