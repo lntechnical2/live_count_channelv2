@@ -41,20 +41,17 @@ async def start(client,message):
        process = FFMPEG_PROCESSES.get(ID)
        if process:
         process.send_signal(signal.SIGTERM)
-       try:
         ydl_opts = {}
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-    meta = ydl.extract_info(YT_LINK, download=False)
-    formats= meta.get('formats', [meta])[:1]
-    for f in formats:
-     url = f['url']
-   except:
-    return
-   station_stream_url = url
-   await group_call.start(ID)
-   process = ffmpeg.input(station_stream_url).output( input_filename, format='s16le', acodec='pcm_s16le', ac=2, ar='48k'  ).overwrite_output().run_async()
-   FFMPEG_PROCESSES[ID] = process
-   print('........ playing..........')
+        	meta = ydl.extract_info(YT_LINK, download=False)
+        	formats= meta.get('formats', [meta])[:1]
+        	for f in formats:
+        		url = f['url']
+        station_stream_url = url
+        await group_call.start(ID)
+        process = ffmpeg.input(station_stream_url).output( input_filename, format='s16le', acodec='pcm_s16le', ac=2, ar='48k'  ).overwrite_output().run_async()
+        FFMPEG_PROCESSES[ID] = process
+        print('........ playing..........')
 
 @app.on_message( filters.user(ADMIN) & filters.command("stop",prefixes='.'))
 async def stop(client,message):
