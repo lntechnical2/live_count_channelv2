@@ -1,66 +1,195 @@
+from telegram import lnbot
 import os
-import signal
-import ffmpeg  
-from pyrogram import Client, filters
-from pytgcalls import GroupCall
-import youtube_dl
-ADMIN = 923943045
-API_ID = "5506621"
-API_HASH = "5a8fd4a251594493d8ff2e1960f99ce2"
-SESSION_NAME = "BQAXcmBjLhuqsl24XhSOeb03P4Nv6P6QBntr4S53L4151oaMqYYdX66BDdMeRabwY46EXjwT-hMF6pUMa_UYTp-h4KNQhjTaoPCiubXtgFwpdUOFn7RygXHS9UxsjGIzRsvRaL2nXxLKeoVFjxJgK29qhPLoVox0NavPoklp8QEVp5gX295AcyDDcXRL95l-oKKd1-eJCwgPwH41Kw9UIGSKBdBTfNXu08hncH1kvuarZGuvbtDQ2jLEMUdcusJaBXv1NcZH_iKQN-HB6MROGFUlxvv5YSM_e_cXnBd1hMO_jdQ4C-ywO_0TR40XJLfz6SLWLxVH8MqAGI1YizLLBuQPNxJAhQA"
-ID = -1001401107958
-YT_LINK ="https://youtu.be/3ZswT0i7KsI"
-app = Client(SESSION_NAME, API_ID, API_HASH)
+import time
+TOKEN =os.environ.get("TOKEN", "") "1862725270:AAHE_xMHgkI2Ox0BqzWtrvhD0cFuUcDpu-8"
+app = lnbot(TOKEN)
 
-HELP =""" Radio stations:
-
-1. https://hls-01-regions.emgsound.ru/11_msk/playlist.m3u8
-
-2. https://filmymirchihdliv-lh.akamaihd.net/i/FilmyMirchiHDLive_1_1@336266/master.m3u8
+CHAT_ID = os.environ.get("CHAT_ID", "")
+MG_ID = os.environ.get("MG_ID", "")
 
 
-To start replay to this message with command /play <ID>
-To stop use /stop command"""
+ch1 = []
+ch2 = []
+ch3 = []
+ch4 = []
+ch5 = []
+ch6 = []
+ch7 = []
+ch8 = []
+
+count1 = app.count("@cwprojects")
+count2 = app.count("@InFoTel14")
+count3 = app.count("@mwkbots")
+count4 = app.count("@HeimanSupports")
+count5 = app.count("@lntechnical")
+count6 = app.count("@BX_Botz")
+count7 = app.count("@EKBOTZ_UPDATE")
+count8 = app.count("@spechlde")
+
+ch1.append(count1)
+ch2.append(count2)
+ch3.append(count3)
+ch4.append(count4)
+ch5.append(count5)
+ch6.append(count6)
+ch7.append(count7)
+ch8.append(count8)
 
 
-GROUP_CALLS = {}
-FFMPEG_PROCESSES = {}
-
-@app.on_message( filters.user(ADMIN) & filters.command('help',prefixes='.'))
-async def help(client,message):
- await message.reply_text(HELP)
-
-
-@app.on_message( filters.user(ADMIN) & filters.command("play",prefixes='.'))
-async def start(client,message):
-       input_filename = f'radio-{ID}.raw'
-       group_call = GROUP_CALLS.get(ID)
-       if group_call is None:
-           group_call = GroupCall(client, input_filename, path_to_log_file='')
-           GROUP_CALLS[ID] = group_call
-       process = FFMPEG_PROCESSES.get(ID)
-       if process:
-        process.send_signal(signal.SIGTERM)
-        ydl_opts = {}
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-        	meta = ydl.extract_info(YT_LINK, download=False)
-        	formats= meta.get('formats', [meta])[:1]
-        	for f in formats:
-        		url = f['url']
-        station_stream_url = url
-        await group_call.start(ID)
-        process = ffmpeg.input(station_stream_url).output( input_filename, format='s16le', acodec='pcm_s16le', ac=2, ar='48k'  ).overwrite_output().run_async()
-        FFMPEG_PROCESSES[ID] = process
-        print('........ playing..........')
-
-@app.on_message( filters.user(ADMIN) & filters.command("stop",prefixes='.'))
-async def stop(client,message):
-    group_call = GROUP_CALLS.get(ID)
-    if group_call:
-     await group_call.stop()
-    process = FFMPEG_PROCESSES.get(ID)
-    if process:
-     process.send_signal(signal.SIGTERM)
-   
-
-app.run()
+	
+while True:
+	time.sleep(3)
+	count_1 = app.count("@cwprojects")
+	count_2 = app.count("@InFoTel14")
+	count_3 = app.count("@mwkbots")
+	count_4 = app.count("@HeimanSupports")
+	count_5 = app.count("@lntechnical")
+	count_6 = app.count("@BX_Botz")
+	count_7 = app.count("@EKBOTZ_UPDATE")
+	count_8 = app.count("@spechlde")
+	
+	
+	
+	if ch1[0] != count_1:
+			del ch1[0]
+			ch1.append(count_1)
+			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = f"""
+  Telegram Channel Live Subscriber Counting .... 🎉🎉
+  
+   [CW Projects](https://t.me/cwprojects) - {ch1[0]}
+   [InFoTel](https://t.me/InFoTel14) - {ch2[0]} 
+   [🇮🇳 Shrimadhav U K ✔️](https://t.me/SpEcHlDe) - {ch8[0]}
+   [Mwk | links & Projects](https://t.me/mwkbots) - {ch3[0]}
+   [Heiman TG Update](https://t.me/HeimanSupports) - {ch4[0]}
+   [LN Technical](https://t.me/lntechnical) - {ch5[0]}
+   [Bx Bots Updates](https://t.me/BX_Botz) - {ch6[0]}
+   [Ek Botz Projects](https://t.me/EKBOTZ_UPDATE) - {ch7[0]}
+       
+    """, disable_webpage = True, parse_mode = "Markdown")
+		  
+	if ch2[0] != count_2:
+			del ch2[0]
+			ch2.append(count_2)
+			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = f"""
+  Telegram Channel Live Subscriber Counting .... 🎉🎉
+  
+   [CW Projects](https://t.me/cwprojects) - {ch1[0]}
+   [InFoTel](https://t.me/InFoTel14) - {ch2[0]} 
+   [🇮🇳 Shrimadhav U K ✔️](https://t.me/SpEcHlDe) - {ch8[0]}
+   [Mwk | links & Projects](https://t.me/mwkbots) - {ch3[0]}
+   [Heiman TG Update](https://t.me/HeimanSupports) - {ch4[0]}
+   [LN Technical](https://t.me/lntechnical) - {ch5[0]}
+   [Bx Bots Updates](https://t.me/BX_Botz) - {ch6[0]}
+   [Ek Botz Projects](https://t.me/EKBOTZ_UPDATE) - {ch7[0]}
+       
+    """, disable_webpage = True, parse_mode = "Markdown")
+		  
+		  
+	if ch3[0] != count_3:
+			del ch3[0]
+			ch3.append(count_3)
+			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = f"""
+  Telegram Channel Live Subscriber Counting .... 🎉🎉
+  
+   [CW Projects](https://t.me/cwprojects) - {ch1[0]}
+   [InFoTel](https://t.me/InFoTel14) - {ch2[0]} 
+   [🇮🇳 Shrimadhav U K ✔️](https://t.me/SpEcHlDe) - {ch8[0]}
+   [Mwk | links & Projects](https://t.me/mwkbots) - {ch3[0]}
+   [Heiman TG Update](https://t.me/HeimanSupports) - {ch4[0]}
+   [LN Technical](https://t.me/lntechnical) - {ch5[0]}
+   [Bx Bots Updates](https://t.me/BX_Botz) - {ch6[0]}
+   [Ek Botz Projects](https://t.me/EKBOTZ_UPDATE) - {ch7[0]}
+       
+    """, disable_webpage = True, parse_mode = "Markdown")
+		  
+		  
+		  
+	if ch4[0] != count_4:
+			del ch4[0]
+			ch4.append(count_4)
+			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = f"""
+  Telegram Channel Live Subscriber Counting .... 🎉🎉
+  
+   [CW Projects](https://t.me/cwprojects) - {ch1[0]}
+   [InFoTel](https://t.me/InFoTel14) - {ch2[0]} 
+   [🇮🇳 Shrimadhav U K ✔️](https://t.me/SpEcHlDe) - {ch8[0]}
+   [Mwk | links & Projects](https://t.me/mwkbots) - {ch3[0]}
+   [Heiman TG Update](https://t.me/HeimanSupports) - {ch4[0]}
+   [LN Technical](https://t.me/lntechnical) - {ch5[0]}
+   [Bx Bots Updates](https://t.me/BX_Botz) - {ch6[0]}
+   [Ek Botz Projects](https://t.me/EKBOTZ_UPDATE) - {ch7[0]}
+       
+    """, disable_webpage = True, parse_mode = "Markdown")
+	
+	if ch5[0] != count_5:
+			del ch5[0]
+			ch5.append(count_5)
+			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = f"""
+  Telegram Channel Live Subscriber Counting .... 🎉🎉
+  
+   [CW Projects](https://t.me/cwprojects) - {ch1[0]}
+   [InFoTel](https://t.me/InFoTel14) - {ch2[0]} 
+   [🇮🇳 Shrimadhav U K ✔️](https://t.me/SpEcHlDe) - {ch8[0]}
+   [Mwk | links & Projects](https://t.me/mwkbots) - {ch3[0]}
+   [Heiman TG Update](https://t.me/HeimanSupports) - {ch4[0]}
+   [LN Technical](https://t.me/lntechnical) - {ch5[0]}
+   [Bx Bots Updates](https://t.me/BX_Botz) - {ch6[0]}
+   [Ek Botz Projects](https://t.me/EKBOTZ_UPDATE) - {ch7[0]}
+       
+    """, disable_webpage = True, parse_mode = "Markdown")
+		  
+		  
+	if ch6[0] != count_6:
+			del ch6[0]
+			ch6.append(count_6)
+			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = f"""
+  Telegram Channel Live Subscriber Counting .... 🎉🎉
+  
+   [CW Projects](https://t.me/cwprojects) - {ch1[0]}
+   [InFoTel](https://t.me/InFoTel14) - {ch2[0]} 
+   [🇮🇳 Shrimadhav U K ✔️](https://t.me/SpEcHlDe) - {ch8[0]}
+   [Mwk | links & Projects](https://t.me/mwkbots) - {ch3[0]}
+   [Heiman TG Update](https://t.me/HeimanSupports) - {ch4[0]}
+   [LN Technical](https://t.me/lntechnical) - {ch5[0]}
+   [Bx Bots Updates](https://t.me/BX_Botz) - {ch6[0]}
+   [Ek Botz Projects](https://t.me/EKBOTZ_UPDATE) - {ch7[0]}
+       
+    """, disable_webpage = True, parse_mode = "Markdown")
+		  
+	if ch7[0] != count_7:
+	      	del ch7[0]
+	      	ch7.append(count_7)
+	      	app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = f"""
+  Telegram Channel Live Subscriber Counting .... 🎉🎉
+  
+   [CW Projects](https://t.me/cwprojects) - {ch1[0]}
+   [InFoTel](https://t.me/InFoTel14) - {ch2[0]} 
+   [🇮🇳 Shrimadhav U K ✔️](https://t.me/SpEcHlDe) - {ch8[0]}
+   [Mwk | links & Projects](https://t.me/mwkbots) - {ch3[0]}
+   [Heiman TG Update](https://t.me/HeimanSupports) - {ch4[0]}
+   [LN Technical](https://t.me/lntechnical) - {ch5[0]}
+   [Bx Bots Updates](https://t.me/BX_Botz) - {ch6[0]}
+   [Ek Botz Projects](https://t.me/EKBOTZ_UPDATE) - {ch7[0]}
+       
+    """, disable_webpage = True, parse_mode = "Markdown")
+       	
+       	
+       	
+       	
+	if ch8[0] != count_8:
+			del ch8[0]
+			ch8.append(count_8)
+			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = f"""
+  Telegram Channel Live Subscriber Counting .... 🎉🎉
+  
+   [CW Projects](https://t.me/cwprojects) - {ch1[0]}
+   [InFoTel](https://t.me/InFoTel14) - {ch2[0]} 
+   [🇮🇳 Shrimadhav U K ✔️](https://t.me/SpEcHlDe) - {ch8[0]}
+   [Mwk | links & Projects](https://t.me/mwkbots) - {ch3[0]}
+   [Heiman TG Update](https://t.me/HeimanSupports) - {ch4[0]}
+   [LN Technical](https://t.me/lntechnical) - {ch5[0]}
+   [Bx Bots Updates](https://t.me/BX_Botz) - {ch6[0]}
+   [Ek Botz Projects](https://t.me/EKBOTZ_UPDATE) - {ch7[0]}
+       
+    """, disable_webpage = True, parse_mode = "Markdown")
+             	
