@@ -1,7 +1,7 @@
 from telegram import lnbot
 import os
 import time
-TOKEN =os.environ.get("TOKEN", "") "1862725270:AAHE_xMHgkI2Ox0BqzWtrvhD0cFuUcDpu-8"
+TOKEN =os.environ.get("TOKEN", "") 
 app = lnbot(TOKEN)
 
 CHAT_ID = os.environ.get("CHAT_ID", "")
