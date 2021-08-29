@@ -1,7 +1,1 @@
-Pyrogram
-TgCrypto
-ffmpeg-python
-psutil
-pytgcalls
-wheel
-youtube_dl
+requests
