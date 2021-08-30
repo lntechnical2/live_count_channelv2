@@ -38,7 +38,7 @@ ch8.append(count8)
 
 	
 while True:
-	time.sleep(3)
+	time.sleep(1)
 	count_1 = app.count("@cwprojects")
 	count_2 = app.count("@InFoTel14")
 	count_3 = app.count("@mwkbots")
