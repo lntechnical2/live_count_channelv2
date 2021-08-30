@@ -1,1 +1,29 @@
-
+{
+    "name": "Renamer Bot",
+    "description": "Telegram File Renamer Bot ",
+    "keywords": [
+        "Renamer Bot",
+        "Mongo DB"
+    ],
+    "repository": "https://github.com/lntechnical2/live_count_channelv2",
+    "success_url": "https://telegram.dog/lntechnical",
+    "env": {
+        "TOKEN": {
+            "description": "Your Bot Token From @BotFather",
+            "value": ""
+        },
+        "CHAT_ID": {
+            "description":"Add Your Chat ID",
+            "value": ""
+        },
+        "MG_ID": {
+            "description": "Add Your Message ID",
+            "value": ""
+        }
+    },
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ]
+}
