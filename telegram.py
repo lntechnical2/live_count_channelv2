@@ -5,10 +5,8 @@ import json
 class lnbot:
 	def __init__(self, token: str):
 		self.api = "https://api.telegram.org/bot"+token+"/"
-		
-		
-	
-	
+		print("Bot Started ....... For Live Counting')
+			
 	def edit(self,
 	       chat_id: str, 
 	       message_id : int , 
