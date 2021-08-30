@@ -1,23 +1,16 @@
 import requests as re 
 import json 
-from typing import Union
+
 
 class lnbot:
 	def __init__(self, token: str):
 		self.api = "https://api.telegram.org/bot"+token+"/"
 		
 		
-	def send_message(self,chat_id :Union[int,str]  , text: str ):
-		send_api = self.api+"sendMessage"
-		data = { 
-		   "chat_id": chat_id,
-		   "text":text		
-		   }
-		response = re.post(send_api,data)
-		
+	
 	
 	def edit(self,
-	       chat_id: Union[int,str] , 
+	       chat_id: str, 
 	       message_id : int , 
 	       text : str ,
 	       disable_webpage : bool= None,
