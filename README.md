@@ -28,3 +28,6 @@ except:
 	print(res)
 
 ```
+
+# Configs 
+
