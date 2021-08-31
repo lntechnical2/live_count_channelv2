@@ -23,7 +23,8 @@ res =re.post(send_api,data).content
 value= json.loads(res)
 try:
 	result = value["result"]
+	print(result["message_id"])
 except:
 	print(res)
-print(result["message_id"])
+
 ```
