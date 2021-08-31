@@ -5,7 +5,7 @@ TOKEN =os.environ.get("TOKEN", "")
 app = lnbot(TOKEN)
 
 CHAT_ID = os.environ.get("CHAT_ID", "")
-MG_ID = os.environ.get("MG_ID", "")
+MESSAGE_ID = os.environ.get("MESSAGE_ID", "")
 
 
 ch1 = []
