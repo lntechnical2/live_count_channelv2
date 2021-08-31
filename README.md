@@ -3,6 +3,8 @@
 
 ## HOW TO GET MESSAGE_ID 
 
+```pip install requests```
+
 ```python
 import requests  as re 
 import json
