@@ -66,41 +66,41 @@ while True:
 	if ch1[0] != count_1:
 			del ch1[0]
 			ch1.append(count_1)
-			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
+			app.edit(chat_id = CHAT_ID ,message_id=MESSAGE_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
 		  
 	if ch2[0] != count_2:
 			del ch2[0]
 			ch2.append(count_2)
-			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text =TEXT, disable_webpage = True, parse_mode = "Markdown")
+			app.edit(chat_id = CHAT_ID ,message_id=MESSAGE_ID,text =TEXT, disable_webpage = True, parse_mode = "Markdown")
 		  
 		  
 	if ch3[0] != count_3:
 			del ch3[0]
 			ch3.append(count_3)
-			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
+			app.edit(chat_id = CHAT_ID ,message_id=MESSAGE_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
 		  
 		  
 		  
 	if ch4[0] != count_4:
 			del ch4[0]
 			ch4.append(count_4)
-			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
+			app.edit(chat_id = CHAT_ID ,message_id=MESSAGE_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
 	
 	if ch5[0] != count_5:
 			del ch5[0]
 			ch5.append(count_5)
-			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
+			app.edit(chat_id = CHAT_ID ,message_id=MESSAGE_ID,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
 		  
 		  
 	if ch6[0] != count_6:
 			del ch6[0]
 			ch6.append(count_6)
-			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
+			app.edit(chat_id = CHAT_ID ,message_id=MESSAGE_ID,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
 		  
 	if ch7[0] != count_7:
 	      	del ch7[0]
 	      	ch7.append(count_7)
-	      	app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
+	      	app.edit(chat_id = CHAT_ID ,message_id=MESSAGE_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
        	
        	
        	
@@ -108,5 +108,5 @@ while True:
 	if ch8[0] != count_8:
 			del ch8[0]
 			ch8.append(count_8)
-			app.edit(chat_id = CHAT_ID ,message_id=MG_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
+			app.edit(chat_id = CHAT_ID ,message_id=MESSAGE_ID ,text = TEXT, disable_webpage = True, parse_mode = "Markdown")
              	
