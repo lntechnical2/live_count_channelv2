@@ -31,3 +31,7 @@ except:
 
 # Configs 
 
+* TOKEN - bot token 
+* MESSAGE_ID - message id
+* CHAT_ID - chat id
+
