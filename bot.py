@@ -17,22 +17,6 @@ ch6 = []
 ch7 = []
 ch8 = []
 
-TEXT = f"""
-  Telegram Channel Live Subscriber Counting .... 🎉🎉
-  
-   [CW Projects](https://t.me/cwprojects) - {ch1[0]}
-   [InFoTel](https://t.me/InFoTel14) - {ch2[0]} 
-   [🇮🇳 Shrimadhav U K ✔️](https://t.me/SpEcHlDe) - {ch8[0]}
-   [Mwk | links & Projects](https://t.me/mwkbots) - {ch3[0]}
-   [Heiman TG Update](https://t.me/HeimanSupports) - {ch4[0]}
-   [LN Technical](https://t.me/lntechnical) - {ch5[0]}
-   [Bx Bots Updates](https://t.me/BX_Botz) - {ch6[0]}
-   [Ek Botz Projects](https://t.me/EKBOTZ_UPDATE) - {ch7[0]}
-       
-    """
-
-
-
 
 count1 = app.count("@cwprojects")
 count2 = app.count("@InFoTel14")
@@ -52,7 +36,19 @@ ch6.append(count6)
 ch7.append(count7)
 ch8.append(count8)
 
-
+TEXT = f"""
+  Telegram Channel Live Subscriber Counting .... 🎉🎉
+  
+   [CW Projects](https://t.me/cwprojects) - {ch1[0]}
+   [InFoTel](https://t.me/InFoTel14) - {ch2[0]} 
+   [🇮🇳 Shrimadhav U K ✔️](https://t.me/SpEcHlDe) - {ch8[0]}
+   [Mwk | links & Projects](https://t.me/mwkbots) - {ch3[0]}
+   [Heiman TG Update](https://t.me/HeimanSupports) - {ch4[0]}
+   [LN Technical](https://t.me/lntechnical) - {ch5[0]}
+   [Bx Bots Updates](https://t.me/BX_Botz) - {ch6[0]}
+   [Ek Botz Projects](https://t.me/EKBOTZ_UPDATE) - {ch7[0]}
+       
+    """
 	
 while True:
 	time.sleep(1)
